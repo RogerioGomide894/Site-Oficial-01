@@ -1,0 +1,996 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="Landing pages, sites corporativos e lojas virtuais. Investimento a partir de R$ 500. Rogério Gomide — Desenvolvedor Web Full Stack.">
+  <title>Rogério Gomide — Desenvolvedor Web Full Stack | rogeriogomide.dev</title>
+  <meta property="og:title"       content="Rogério Gomide — Sites que transformam visitas em clientes">
+  <meta property="og:description" content="Landing pages, sites corporativos e lojas virtuais a partir de R$ 500.">
+  <meta property="og:locale"      content="pt_BR">
+  <meta property="og:type"        content="website">
+  <meta name="twitter:card"       content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --navy:#0b1e4a;--navy-mid:#1d3461;--navy-light:#163066;
+      --mint:#10b981;--mint-dark:#0d9268;--mint-light:#e8f5f0;--mint-faint:#edf4f0;
+      --ink:#1a2233;--ink-muted:#5a6478;--ink-subtle:#8b93a5;
+      --paper:#f8f9fb;--line:#e2e6ef;--nav-h:80px;
+      --wa:https://wa.me/5562991558090;
+      scroll-behavior:smooth;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:Manrope,Arial,sans-serif;background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased}
+    section[id]{scroll-margin-top:var(--nav-h)}
+    img{max-width:100%;display:block}
+    a{color:inherit}
+    ul,ol{list-style:none}
+    .container{width:100%;max-width:1180px;margin:0 auto;padding:0 24px}
+
+    /* ── NAV ── */
+    #site-header{position:fixed;top:0;left:0;right:0;z-index:40;height:var(--nav-h);transition:background .3s,box-shadow .3s}
+    #site-header.scrolled{background:rgba(255,255,255,.95);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;height:100%;gap:16px}
+    .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .brand-rg{width:36px;height:36px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-family:"Plus Jakarta Sans",sans-serif;font-size:10px;font-weight:800;transition:background .2s;flex-shrink:0}
+    .brand:hover .brand-rg{background:var(--mint)}
+    .brand-txt{font-family:"Plus Jakarta Sans",sans-serif;font-size:12px;font-weight:800;color:var(--navy);line-height:1.1}
+    .brand-txt small{display:block;font-family:"DM Mono",monospace;font-size:6.5px;letter-spacing:1.2px;color:var(--ink-muted);margin-top:2px}
+    nav.main-nav{display:flex;gap:28px}
+    .nav-link{font-size:12px;font-weight:700;color:var(--ink-muted);text-decoration:none;padding-bottom:2px;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+    .nav-link:hover,.nav-link.active{color:var(--mint);border-color:var(--mint)}
+    .nav-cta{background:var(--mint);color:#fff;font-size:11px;font-weight:800;padding:9px 16px;border-radius:8px;text-decoration:none;transition:background .2s,transform .15s}
+    .nav-cta:hover{background:var(--mint-dark);transform:translateY(-1px)}
+    #progress-bar{position:absolute;bottom:0;left:0;height:2px;background:var(--mint);width:0;transition:width .1s}
+    .hamburger{display:none;border:1px solid var(--line);background:#fff;color:var(--navy);width:36px;height:36px;border-radius:8px;font-size:16px;cursor:pointer;align-items:center;justify-content:center}
+    .mobile-nav{display:none;flex-direction:column;gap:14px;padding:16px 24px 20px;background:#fff;border-top:1px solid var(--line);box-shadow:0 8px 24px rgba(11,30,74,.08)}
+    .mobile-nav.open{display:flex}
+    @media(max-width:767px){nav.main-nav,.nav-cta{display:none}.hamburger{display:flex}}
+
+
+    /* ── HERO ANIMATED CANVAS (substitui vídeo externo com bloqueio de hotlink) ── */
+    .hero-canvas-wrap{position:absolute;inset:0;z-index:0;overflow:hidden}
+    .hero-canvas-wrap canvas{width:100%;height:100%;display:block}
+    .hero-canvas-wrap::after{content:'';position:absolute;inset:0;
+      background:linear-gradient(135deg,rgba(11,30,74,.88) 0%,rgba(11,30,74,.68) 40%,rgba(11,30,74,.85) 100%)}
+    /* ── HERO ── */
+    #inicio{min-height:100dvh;background:var(--navy);display:flex;align-items:center;position:relative;overflow:hidden;padding-top:var(--nav-h);isolation:isolate}
+    .aurora{position:absolute;border-radius:50%;filter:blur(70px);opacity:.12;pointer-events:none;z-index:1}
+    .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:80px 0;position:relative;z-index:2}
+    @media(max-width:900px){.hero-grid{grid-template-columns:1fr;padding:60px 0 40px}.hero-art{display:none}}
+    .hero-available{font-family:"DM Mono",monospace;font-size:10px;color:var(--mint);letter-spacing:2px;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:18px}
+    .hero-available span{width:7px;height:7px;border-radius:50%;background:var(--mint);animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+    .eyebrow{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:18px}
+    .eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--mint);flex-shrink:0}
+    .eyebrow-light{color:var(--ink-muted)}.eyebrow-dark{color:rgba(255,255,255,.45)}
+    h1.hero-heading{font-family:"Plus Jakarta Sans",sans-serif;font-size:clamp(40px,5.5vw,68px);font-weight:800;color:#fff;line-height:.98;letter-spacing:-.03em;margin-bottom:24px}
+    h1.hero-heading em{font-style:normal;color:var(--mint)}
+    .hero-sub{max-width:460px;font-size:16px;line-height:1.7;color:rgba(255,255,255,.6);margin-bottom:32px}
+    .hero-sub strong{color:rgba(255,255,255,.88);font-weight:600}
+    .hero-actions{display:flex;align-items:center;gap:20px;margin-bottom:48px;flex-wrap:wrap}
+    .btn-primary{background:var(--mint);color:#fff;font-size:12px;font-weight:800;padding:13px 20px;border-radius:8px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:background .2s,transform .15s}
+    .btn-primary:hover{background:var(--mint-dark);transform:translateY(-1px)}
+    .btn-ghost-link{font-size:12px;font-weight:800;color:rgba(255,255,255,.5);text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:color .2s}
+    .btn-ghost-link:hover{color:#fff}.btn-ghost-link span{color:var(--mint)}
+    .trust-bar{display:flex;gap:28px;flex-wrap:wrap}
+    .trust-item{padding-right:28px;border-right:1px solid rgba(255,255,255,.12)}
+    .trust-item:last-child{border:0;padding:0}
+    .trust-item strong{display:block;font-family:"DM Mono",monospace;font-size:12px;color:rgba(255,255,255,.88)}
+    .trust-item span{font-size:10px;color:rgba(255,255,255,.4)}
+    /* browser mockup */
+    .hero-art{position:relative;display:grid;place-items:center;min-height:420px}
+    .browser-mock{width:100%;max-width:470px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);border-radius:18px;overflow:hidden;backdrop-filter:blur(6px);animation:float 6s ease-in-out infinite}
+    @keyframes float{50%{transform:translateY(-10px) rotate(1.5deg)}}
+    .browser-top{height:30px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;font-family:"DM Mono",monospace;font-size:8px;color:rgba(255,255,255,.3)}
+    .browser-dots span{width:6px;height:6px;border-radius:50%;display:inline-block;margin-right:3px}
+    .browser-screen{height:280px;overflow:hidden;padding:14px 16px;background:linear-gradient(135deg,#e5e3fb 0%,#d4cfff 100%)}
+    .bs-nav{display:flex;justify-content:space-between;font-size:8px;margin-bottom:10px}
+    .bs-nav strong{font-size:14px;font-weight:800;color:#3d2e9c;font-family:"Plus Jakarta Sans",sans-serif}
+    .bs-content{display:flex;justify-content:space-between;align-items:center}
+    .bs-heading{font-family:"Plus Jakarta Sans",sans-serif;font-size:30px;font-weight:800;line-height:.95;letter-spacing:-2px;color:#1a1060;margin-bottom:8px}
+    .bs-heading em{font-style:normal;color:#4f3abf}
+    .bs-sphere{width:130px;height:130px;border-radius:50%;flex-shrink:0;background:linear-gradient(140deg,#baacff,#6847ff 50%,#2f1b9d);box-shadow:inset -12px -16px 22px rgba(34,20,122,.35)}
+    .browser-cap{font-family:"DM Mono",monospace;font-size:8px;color:rgba(255,255,255,.25);padding:8px 12px;display:flex;justify-content:space-between}
+    .hero-badge{position:absolute;right:-16px;bottom:24px;z-index:2;background:var(--mint);border-radius:14px;padding:12px 14px;box-shadow:0 14px 28px rgba(11,30,74,.2);display:flex;align-items:center;gap:10px;max-width:180px;animation:float 6s ease-in-out 1.4s infinite}
+    .hero-badge p{margin:0;font-size:10px;color:var(--navy);line-height:1.4}
+    .orbit{position:absolute;border:1px solid rgba(255,255,255,.05);border-radius:50%;z-index:1}
+    .scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);font-family:"DM Mono",monospace;font-size:9px;letter-spacing:1.5px;color:rgba(255,255,255,.25);display:flex;flex-direction:column;align-items:center;gap:6px;z-index:2}
+    .scroll-hint span{animation:bounce 2s infinite;font-size:16px}
+    @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+
+    /* ── SECTIONS ── */
+    .section{padding:clamp(60px,10vw,130px) 0}
+    .section-white{background:#fff}.section-paper{background:var(--paper)}
+    .section-navy{background:var(--navy)}.section-mint-faint{background:var(--mint-faint)}
+    .sec-heading{font-family:"Plus Jakarta Sans",sans-serif;font-size:clamp(28px,3.5vw,46px);font-weight:800;line-height:1.05;letter-spacing:-.022em}
+    .sec-heading em{font-style:normal;color:var(--navy)}
+    .sec-heading-white{color:#fff}.sec-heading-white em{color:var(--mint)}
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .65s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1)}
+    .reveal.visible{opacity:1;transform:none}
+
+    /* ── OFFER / MARQUEE ── */
+    .offer-bar{background:var(--mint);padding:10px 24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;font-family:"DM Mono",monospace;font-size:10px;color:var(--navy);font-weight:700}
+    .marquee-bar{background:var(--navy);padding:10px 0;overflow:hidden;white-space:nowrap}
+    .marquee-inner{display:inline-block;animation:marquee 30s linear infinite}
+    @keyframes marquee{to{transform:translateX(-50%)}}
+    .marquee-inner span{font-family:"DM Mono",monospace;font-size:11px;color:rgba(255,255,255,.4);letter-spacing:.5px}
+
+    /* ── PAIN ── */
+    .pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+    @media(max-width:767px){.pain-grid{grid-template-columns:1fr}}
+    .pain-list li{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--ink-muted);line-height:1.6}
+    .pain-list li:last-child{border:0}
+    .pain-list .num{font-family:"DM Mono",monospace;font-size:11px;color:var(--mint);font-weight:600;flex-shrink:0;margin-top:3px;width:22px}
+
+    /* ── SERVICES ── */
+    .services-header{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:48px}
+    @media(max-width:767px){.services-header{grid-template-columns:1fr}}
+    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    @media(max-width:900px){.services-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:600px){.services-grid{grid-template-columns:1fr}}
+    .service-card{border:1px solid var(--line);background:#fff;border-radius:14px;padding:24px;display:flex;flex-direction:column;min-height:250px;transition:transform .25s,box-shadow .25s,border-color .25s}
+    .service-card:hover{transform:translateY(-5px);box-shadow:0 6px 20px rgba(11,30,74,.09);border-color:rgba(11,30,74,.15)}
+    .service-idx{font-family:"DM Mono",monospace;font-size:9px;color:var(--ink-subtle);margin-bottom:4px}
+    .service-icon{width:42px;height:42px;background:var(--mint-light);border-radius:10px;display:grid;place-items:center;color:var(--mint);font-size:20px;margin:20px 0}
+    .service-card h3{font-family:"Plus Jakarta Sans",sans-serif;font-size:18px;font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
+    .service-card p{font-size:13px;color:var(--ink-muted);line-height:1.65;flex:1}
+    .service-cta{margin-top:18px;font-size:11px;font-weight:800;color:var(--navy);text-decoration:none;display:inline-flex;align-items:center;gap:5px;transition:color .2s}
+    .service-cta:hover,.service-cta span{color:var(--mint)}
+    .sec-cta-bar{display:flex;align-items:center;gap:18px;margin-top:32px;padding-top:28px;border-top:1px solid var(--line);flex-wrap:wrap}
+    .btn-outline{border:1.5px solid var(--navy);color:var(--navy);background:transparent;font-size:11px;font-weight:800;padding:10px 16px;border-radius:8px;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:background .2s,color .2s,transform .15s}
+    .btn-outline:hover{background:var(--navy);color:#fff;transform:translateY(-1px)}
+
+    /* ── ABOUT ── */
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+    @media(max-width:767px){.about-grid{grid-template-columns:1fr}}
+    .about-bio{display:flex;align-items:flex-start;gap:18px;margin-top:28px}
+    .about-avatar{width:64px;height:64px;border-radius:50%;background:var(--mint);flex-shrink:0;display:grid;place-items:center;font-family:"Plus Jakarta Sans",sans-serif;font-size:20px;font-weight:800;color:#fff}
+    .about-bio p{font-size:15px;line-height:1.75;color:rgba(255,255,255,.62);margin-bottom:14px}
+    .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px 40px;border-top:1px solid rgba(255,255,255,.1);padding-top:32px}
+    .stat-val{font-family:"Plus Jakarta Sans",sans-serif;font-size:clamp(30px,4vw,44px);font-weight:800;color:var(--mint);letter-spacing:-.03em;line-height:1}
+    .stat-lbl{font-family:"DM Mono",monospace;font-size:9px;color:rgba(255,255,255,.4);letter-spacing:1.2px;text-transform:uppercase;margin-top:4px}
+    .urgency-box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px;margin-top:32px;display:flex;gap:12px}
+    .urgency-box p{font-size:13px;color:rgba(255,255,255,.6);line-height:1.6;margin:0}
+    .urgency-box strong{color:#fff}
+
+    /* ── PROCESS ── */
+    .process-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(255,255,255,.1);margin-top:48px}
+    @media(max-width:767px){.process-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:480px){.process-grid{grid-template-columns:1fr}}
+    .process-step{padding:24px 16px 20px 0;border-right:1px solid rgba(255,255,255,.1)}
+    .process-step:last-child{border:0}
+    .process-step+.process-step{padding-left:16px}
+    .process-lbl{font-family:"DM Mono",monospace;font-size:9px;color:var(--mint);letter-spacing:1px;margin-bottom:20px}
+    .process-step h3{font-family:"Plus Jakarta Sans",sans-serif;font-size:22px;font-weight:800;color:#fff;letter-spacing:-.02em;margin-bottom:8px}
+    .process-step p{font-size:13px;color:rgba(255,255,255,.48);line-height:1.6;max-width:200px}
+
+    /* ── METHODOLOGY ── */
+    .meth-header{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:48px;flex-wrap:wrap}
+    .meth-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
+    @media(max-width:767px){.meth-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:480px){.meth-grid{grid-template-columns:1fr}}
+    .meth-item{padding:28px 16px 20px 0;border-right:1px solid var(--line)}
+    .meth-item:last-child{border:0}.meth-item+.meth-item{padding-left:16px}
+    .meth-num{width:28px;height:28px;border-radius:50%;background:var(--mint);color:#fff;display:grid;place-items:center;font-family:"DM Mono",monospace;font-size:9px;font-weight:700;margin-top:-42px}
+    .meth-item h3{font-family:"Plus Jakarta Sans",sans-serif;font-size:18px;font-weight:800;letter-spacing:-.02em;margin:24px 0 8px}
+    .meth-item p{font-size:13px;color:var(--ink-muted);line-height:1.6;max-width:175px}
+
+    /* ── TECH ── */
+    .tech-header{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:36px;flex-wrap:wrap}
+    .tech-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+    @media(max-width:900px){.tech-grid{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:480px){.tech-grid{grid-template-columns:1fr 1fr}}
+    .tech-card{background:#fff;border-radius:14px;padding:18px;min-height:140px;display:flex;flex-direction:column;box-shadow:0 1px 3px rgba(11,30,74,.06);transition:transform .25s,box-shadow .25s}
+    .tech-card:hover{transform:translateY(-4px);box-shadow:0 6px 18px rgba(11,30,74,.1)}
+    .tech-icon{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;color:#fff;font-family:"DM Mono",monospace;font-size:14px;font-weight:700;margin-bottom:auto}
+    .tech-name{font-family:"Plus Jakarta Sans",sans-serif;font-size:15px;font-weight:800;letter-spacing:-.02em;margin-top:16px}
+    .tech-role{font-family:"DM Mono",monospace;font-size:9px;color:var(--ink-subtle);margin-top:3px}
+
+    /* ── PORTFOLIO ── */
+    .filters{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}
+    .filter-btn{border:1.5px solid var(--line);background:transparent;color:var(--ink-muted);font-size:11px;font-weight:600;padding:7px 16px;border-radius:30px;cursor:pointer;transition:all .2s;min-height:36px;font-family:Manrope,sans-serif}
+    .filter-btn:hover{border-color:var(--navy);color:var(--navy)}
+    .filter-btn.active{background:var(--navy);border-color:var(--navy);color:#fff}
+    .port-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+    @media(max-width:600px){.port-grid{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:8px}}
+    .port-card{border-radius:14px;overflow:hidden;position:relative;background:var(--navy);height:280px;cursor:pointer;border:0;padding:0;display:block;width:100%}
+    @media(max-width:600px){.port-card{flex-shrink:0;width:82vw;scroll-snap-align:start}}
+    .port-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s;opacity:.82}
+    .port-card:hover img{transform:scale(1.06)}
+    .port-overlay{position:absolute;inset:0;padding:20px;display:flex;flex-direction:column;justify-content:flex-end;background:linear-gradient(0deg,rgba(11,30,74,.96) 0%,transparent 55%);color:#fff;opacity:0;transition:opacity .3s}
+    .port-card:hover .port-overlay{opacity:1}
+    .port-badge{font-family:"DM Mono",monospace;font-size:9px;color:rgba(16,185,129,.85);margin-bottom:4px}
+    .port-title{font-family:"Plus Jakarta Sans",sans-serif;font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px}
+    .port-stack{font-family:"DM Mono",monospace;font-size:9px;color:rgba(255,255,255,.5)}
+    #lightbox{display:none;position:fixed;inset:0;z-index:60;background:rgba(11,30,74,.95);align-items:center;justify-content:center;padding:32px;flex-direction:column}
+    #lightbox.open{display:flex}
+    #lightbox img{max-height:78vh;max-width:100%;border-radius:14px;object-fit:contain}
+    #lightbox-close{position:absolute;top:20px;right:24px;font-size:36px;color:rgba(255,255,255,.6);background:none;border:none;cursor:pointer;line-height:1}
+    #lightbox-close:hover{color:#fff}
+    #lightbox-caption{font-family:"DM Mono",monospace;font-size:11px;color:rgba(255,255,255,.4);margin-top:12px;text-align:center}
+
+    /* ── TESTIMONIALS ── */
+    .testi-quote{font-family:"Plus Jakarta Sans",sans-serif;font-size:clamp(20px,3vw,34px);font-weight:800;color:#fff;line-height:1.18;letter-spacing:-.025em;margin:20px 0;max-width:860px}
+    .testi-author{display:flex;align-items:center;gap:16px}
+    .testi-avatar{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-family:"Plus Jakarta Sans",sans-serif;font-size:14px;font-weight:800;color:#fff;flex-shrink:0}
+    .testi-name{font-family:"Plus Jakarta Sans",sans-serif;font-size:15px;font-weight:800;color:#fff}
+    .testi-role{font-family:"DM Mono",monospace;font-size:10px;color:var(--mint);margin-top:3px}
+    .carousel-controls{display:flex;align-items:center;gap:12px;margin-top:24px}
+    .carousel-btn{border:1px solid rgba(255,255,255,.2);color:#fff;background:transparent;width:40px;height:40px;border-radius:50%;font-size:16px;cursor:pointer;transition:background .2s,border-color .2s;font-family:inherit}
+    .carousel-btn:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4)}
+    .carousel-idx{font-family:"DM Mono",monospace;font-size:10px;color:rgba(255,255,255,.35);min-width:44px;text-align:center}
+
+    /* ── FAQ ── */
+    .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+    @media(max-width:767px){.faq-grid{grid-template-columns:1fr}}
+    .faq-list{border-top:1px solid var(--line)}
+    details.faq-item{border-bottom:1px solid var(--line);padding:18px 0}
+    details.faq-item summary{font-family:"Plus Jakarta Sans",sans-serif;font-size:17px;font-weight:800;letter-spacing:-.02em;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;transition:color .2s}
+    details.faq-item summary:hover{color:var(--navy)}
+    details.faq-item summary::after{content:'+';color:var(--mint);font-size:20px;font-weight:400;flex-shrink:0;transition:transform .2s}
+    details.faq-item[open] summary::after{transform:rotate(45deg)}
+    details.faq-item p{margin-top:14px;font-size:14px;color:var(--ink-muted);line-height:1.7;max-width:500px}
+
+    /* ── CONTACT ── */
+    #contato{background:linear-gradient(140deg,var(--navy) 0%,var(--navy-light) 60%,#0f2857 100%);padding:clamp(60px,10vw,120px) 0}
+    .contact-form{display:flex;flex-direction:column;gap:18px;max-width:540px;margin-top:32px}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    @media(max-width:600px){.form-row{grid-template-columns:1fr}}
+    .form-label{font-family:"DM Mono",monospace;font-size:9px;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.45);display:flex;flex-direction:column;gap:6px}
+    .form-label input,.form-label select{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:10px;color:#fff;font-size:13px;padding:13px 16px;min-height:48px;outline:none;transition:border-color .2s;font-family:Manrope,sans-serif}
+    .form-label input::placeholder{color:rgba(255,255,255,.28)}
+    .form-label input:focus,.form-label select:focus{border-color:rgba(16,185,129,.55)}
+    .form-label select option{background:var(--navy)}
+    .form-note{font-family:"DM Mono",monospace;font-size:10px;color:rgba(255,255,255,.3);margin-top:12px}
+
+    /* ── SOCIAL ICONS ── */
+    .social-links{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+    .social-link{display:inline-flex;align-items:center;gap:7px;color:rgba(255,255,255,.35);text-decoration:none;font-family:"DM Mono",monospace;font-size:9px;letter-spacing:.6px;padding:7px 10px;border:1px solid rgba(255,255,255,.1);border-radius:8px;transition:all .2s}
+    .social-link:hover{color:var(--mint);border-color:rgba(16,185,129,.4);background:rgba(16,185,129,.07)}
+    .social-icon{width:16px;height:16px;flex-shrink:0;fill:currentColor}
+    .site-footer{border-top:1px solid rgba(255,255,255,.1);margin-top:64px;padding-top:24px;font-family:"DM Mono",monospace;font-size:9px;letter-spacing:.8px;color:rgba(255,255,255,.25);display:flex;flex-direction:column;gap:20px}
+    .site-footer a{color:rgba(255,255,255,.28);text-decoration:none;transition:color .2s}
+    .site-footer a:hover{color:var(--mint)}
+
+    /* ── FLOATING ── */
+    .wa-btn{position:fixed;bottom:20px;right:20px;z-index:50;background:var(--mint);color:var(--navy);font-size:11px;font-weight:800;padding:11px 16px;border-radius:30px;text-decoration:none;display:flex;align-items:center;gap:7px;box-shadow:0 8px 24px rgba(11,30,74,.2);transition:background .2s,transform .15s}
+    .wa-btn:hover{background:var(--mint-dark);color:#fff;transform:translateY(-1px)}
+    .back-top{position:fixed;bottom:76px;right:20px;z-index:50;width:42px;height:42px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;text-decoration:none;font-size:16px;box-shadow:0 8px 24px rgba(11,30,74,.2);opacity:0;pointer-events:none;transform:translateY(6px);transition:opacity .3s,transform .3s,background .2s}
+    .back-top.show{opacity:1;pointer-events:auto;transform:none}
+    .back-top:hover{background:var(--mint);color:var(--navy)}
+    .skip-link{position:absolute;top:-100px;left:16px;background:var(--mint);color:var(--navy);padding:8px 16px;border-radius:6px;font-weight:800;text-decoration:none;z-index:100;transition:top .2s}
+    .skip-link:focus{top:16px}
+  </style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Pular para o conteúdo</a>
+
+<!-- NAV -->
+<header id="site-header">
+  <div class="container nav-inner">
+    <a href="#inicio" class="brand" aria-label="rogeriogomide.dev — início">
+      <div class="brand-rg" aria-hidden="true">RG</div>
+      <div class="brand-txt">ROGÉRIO GOMIDE<small>DESENVOLVEDOR WEB · FULL STACK</small></div>
+    </a>
+    <nav class="main-nav" aria-label="Navegação principal">
+      <a href="#servicos"  class="nav-link" data-section="servicos">Serviços</a>
+      <a href="#sobre"     class="nav-link" data-section="sobre">Sobre</a>
+      <a href="#portfolio" class="nav-link" data-section="portfolio">Portfólio</a>
+      <a href="#faq"       class="nav-link" data-section="faq">FAQ</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:10px">
+      <a href="https://wa.me/5562991558090" target="_blank" rel="noopener noreferrer" class="nav-cta">Falar do projeto ↗</a>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">☰</button>
+    </div>
+  </div>
+  <div id="progress-bar"></div>
+  <div class="mobile-nav" id="mobile-menu" role="navigation" aria-label="Navegação mobile">
+    <a href="#servicos"  class="nav-link" style="color:var(--ink)">Serviços</a>
+    <a href="#sobre"     class="nav-link" style="color:var(--ink)">Sobre</a>
+    <a href="#portfolio" class="nav-link" style="color:var(--ink)">Portfólio</a>
+    <a href="#faq"       class="nav-link" style="color:var(--ink)">FAQ</a>
+    <a href="https://wa.me/5562991558090" target="_blank" rel="noopener noreferrer" class="nav-cta" style="align-self:flex-start">Falar do projeto ↗</a>
+  </div>
+</header>
+
+<main id="main-content">
+
+<!-- HERO -->
+<section id="inicio">
+
+  <!-- Hero animated background: developer coding scene (pure Canvas — sem hotlink) -->
+  <div class="hero-canvas-wrap" aria-hidden="true">
+    <canvas id="hero-canvas"></canvas>
+  </div>
+  <div aria-hidden="true" class="aurora" style="width:500px;height:500px;background:var(--mint);left:-180px;top:-120px"></div>
+  <div aria-hidden="true" class="aurora" style="width:380px;height:380px;background:var(--navy-mid);right:-100px;bottom:-60px"></div>
+  <div aria-hidden="true" class="orbit" style="width:480px;height:480px;right:5%;top:50%;transform:translateY(-50%)"></div>
+  <div aria-hidden="true" class="orbit" style="width:620px;height:320px;right:5%;top:50%;transform:translateY(-50%) rotate(-38deg)"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <p class="hero-available"><span aria-hidden="true"></span>Disponível para novos projetos</p>
+        <p class="eyebrow eyebrow-dark">Desenvolvedor web sênior · full stack</p>
+        <h1 class="hero-heading">Transformo visitantes<br>em <em>clientes.</em></h1>
+        <p class="hero-sub"><strong>Seu site pode fazer isso hoje.</strong> Desenvolvo landing pages, sites corporativos e lojas virtuais com estratégia, design e código para tornar seu negócio mais fácil de encontrar e escolher.</p>
+        <div class="hero-actions">
+          <a href="https://wa.me/5562991558090" target="_blank" rel="noopener noreferrer" class="btn-primary">Quero transformar meu site <span style="opacity:.7">↘</span></a>
+          <a href="#portfolio" class="btn-ghost-link">Ver projetos <span>→</span></a>
+        </div>
+        <ul class="trust-bar" aria-label="Diferenciais">
+          <li class="trust-item"><strong>Full stack</strong><span>do design ao código</span></li>
+          <li class="trust-item"><strong>Mobile</strong><span>em primeiro lugar</span></li>
+          <li class="trust-item"><strong>SEO</strong><span>pronto para começar</span></li>
+        </ul>
+      </div>
+      <div class="hero-art" aria-label="Prévia de site profissional">
+        <div class="browser-mock">
+          <div class="browser-top">
+            <div class="browser-dots" aria-hidden="true">
+              <span style="background:rgba(248,113,113,.6)"></span>
+              <span style="background:rgba(251,191,36,.6)"></span>
+              <span style="background:rgba(74,222,128,.6)"></span>
+            </div>
+            <span>rogeriogomide.dev</span>
+            <span style="color:var(--mint);font-size:7px">● LIVE</span>
+          </div>
+          <div class="browser-screen">
+            <div class="bs-nav"><strong>nora.</strong><span style="font-family:'DM Mono',monospace;font-size:8px;color:#6b5fc8">sobre · projetos · contato</span></div>
+            <div class="bs-content">
+              <div>
+                <small style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;color:#6b5fc8">ESTÚDIO CRIATIVO</small>
+                <div class="bs-heading" style="margin-top:6px">Ideias que<br><em>ganham forma.</em></div>
+                <a style="font-size:9px;font-weight:800;color:#4f3abf">Conheça o estúdio ↗</a>
+              </div>
+              <div class="bs-sphere"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-family:'DM Mono',monospace;font-size:8px;color:#6b5fc8;margin-top:12px"><span>01 / 03</span><span>UMA NOVA PERSPECTIVA</span></div>
+          </div>
+          <div class="browser-cap"><span>LANDING PAGE</span><span>DESIGN & DEVELOPMENT</span></div>
+        </div>
+        <div class="hero-badge" aria-hidden="true"><span style="font-size:18px">✦</span><p><strong>Uma presença digital</strong><br>feita para ser lembrada.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint" aria-hidden="true"><p>ROLE PARA DESCOBRIR</p><span>↓</span></div>
+</section>
+
+<!-- OFFER / MARQUEE -->
+<div class="offer-bar" aria-label="Serviços e condições">
+  <span>LANDING PAGES · SITES CORPORATIVOS · LOJAS VIRTUAIS</span>
+  <strong>INVESTIMENTO INICIAL A PARTIR DE R$ 500</strong>
+  <span>ATENDIMENTO REMOTO EM TODO O BRASIL</span>
+</div>
+<div class="marquee-bar" aria-hidden="true">
+  <div class="marquee-inner"><span>LANDING PAGES ✦ SITES CORPORATIVOS ✦ LOJAS VIRTUAIS ✦ HTML · CSS · JAVASCRIPT · PHP · PYTHON · SEO ✦ &nbsp;&nbsp; LANDING PAGES ✦ SITES CORPORATIVOS ✦ LOJAS VIRTUAIS ✦ HTML · CSS · JAVASCRIPT · PHP · PYTHON · SEO ✦ &nbsp;&nbsp;</span></div>
+</div>
+
+<!-- PAIN -->
+<section class="section section-paper reveal" aria-labelledby="pain-heading">
+  <div class="container">
+    <div class="pain-grid">
+      <div>
+        <p class="eyebrow eyebrow-light">Isso parece familiar?</p>
+        <h2 class="sec-heading" id="pain-heading">Seu trabalho é bom.<br>Mas a web ainda não <em>mostra isso.</em></h2>
+      </div>
+      <ul class="pain-list" aria-label="Problemas comuns">
+        <li><span class="num">01</span>Você depende só de indicação ou de posts espalhados nas redes.</li>
+        <li><span class="num">02</span>Quem visita seu perfil ainda não entende exatamente o que você faz.</li>
+        <li><span class="num">03</span>O contato acaba virando esforço, em vez de ser o próximo passo natural.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="servicos" class="section section-white reveal" aria-labelledby="services-heading">
+  <div class="container">
+    <div class="services-header">
+      <div>
+        <p class="eyebrow eyebrow-light">A solução certa</p>
+        <h2 class="sec-heading" id="services-heading">Seu trabalho merece<br><em>uma vitrine à altura.</em></h2>
+      </div>
+      <p style="align-self:flex-end;max-width:380px;font-size:15px;color:var(--ink-muted);line-height:1.7">Você não precisa de mais um link perdido nas redes sociais. Precisa de uma página que explique o que faz, por que escolher você e como entrar em contato.</p>
+    </div>
+    <ul class="services-grid" aria-label="Serviços oferecidos">
+      <li><article class="service-card"><span class="service-idx">01</span><div class="service-icon" aria-hidden="true">↗</div><h3>Mensagem clara</h3><p>Em poucos segundos, o visitante entende o que você oferece e para quem.</p><a href="https://wa.me/5562991558090" target="_blank" rel="noopener noreferrer" class="service-cta">Quero essa clareza <span>→</span></a></article></li>
+      <li><article class="service-card"><span class="service-idx">02</span><div class="service-icon" aria-hidden="true">◇</div><h3>Design que passa confiança</h3><p>Uma presença profissional que valoriza a sua marca antes da primeira conversa.</p><a href="https://wa.me/5562991558090" target="_blank" rel="noopener noreferrer" class="service-cta">Quero me destacar <span>→</span></a></article></li>
+      <li><article class="service-card"><span class="service-idx">03</span><div class="service-icon" aria-hidden="true">⌘</div><h3>Pronta para crescer</h3><p>Rápida, responsiva e estruturada para ser divulgada onde seu público está.</p><a href="https://wa.me/5562991558090" target="_blank" rel="noopener noreferrer" class="service-cta">Quero ir para a web <span>→</span></a></article></li>
+    </ul>
+    <div class="sec-cta-bar">
+      <p style="font-size:13px;color:var(--ink-muted)">Pronto para dar o próximo passo?</p>
+      <a href="https://wa.me/5562991558090" target="_blank" rel="noopener noreferrer" class="btn-primary" style="font-size:11px;padding:10px 16px">Falar do projeto ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="sobre" class="section section-navy reveal" aria-labelledby="about-heading">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <p class="eyebrow eyebrow-dark">Sobre mim</p>
+        <h2 class="sec-heading sec-heading-white" id="about-heading">Código com<br><em>estratégia e propósito.</em></h2>
+        <div class="about-bio">
+          <div class="about-avatar" aria-hidden="true">RG</div>
+          <div>
+            <p>Sou Rogério Gomide, desenvolvedor web full stack baseado em Pernambuco. Trabalho com negócios que querem transformar sua presença digital em um ativo real — não apenas um endereço na internet.</p>
+            <p>Cada projeto começa pela estratégia: entender o público, organizar a mensagem e construir uma experiência que converte visitantes em clientes.</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <ul class="stats-grid" aria-label="Números do trabalho">
+          <li><div class="stat-val">12+</div><div class="stat-lbl">projetos entregues</div></li>
+          <li><div class="stat-val">100%</div><div class="stat-lbl">no prazo</div></li>
+          <li><div class="stat-val">~7 dias</div><div class="stat-lbl">prazo médio de entrega</div></li>
+          <li><div class="stat-val">2</div><div class="stat-lbl">vagas abertas este mês</div></li>
+        </ul>
+        <div class="urgency-box">
+          <span style="color:var(--mint);font-size:18px;flex-shrink:0;margin-top:2px" aria-hidden="true">●</span>
+          <p><strong>Agenda com 2 vagas abertas este mês.</strong> Se você está planejando um projeto, é um bom momento para conversar antes que o calendário feche.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="processo" class="section section-navy reveal" style="border-top:1px solid rgba(255,255,255,.07)" aria-labelledby="process-heading">
+  <div class="container">
+    <p class="eyebrow eyebrow-dark">Processo sem ruído</p>
+    <h2 class="sec-heading sec-heading-white" id="process-heading">Você não precisa<br>saber <em>por onde começar.</em></h2>
+    <ol class="process-grid" aria-label="Etapas do processo">
+      <li class="process-step"><p class="process-lbl">01 / BRIEFING</p><h3>Você conta</h3><p>Fala sobre o seu negócio, público e o resultado que busca.</p></li>
+      <li class="process-step"><p class="process-lbl">02 / ESTRATÉGIA</p><h3>Nós organizamos</h3><p>Transformamos suas informações em mensagem fácil de entender.</p></li>
+      <li class="process-step"><p class="process-lbl">03 / BUILD</p><h3>Nós construímos</h3><p>Desenvolvemos uma página bonita e pensada para qualquer tela.</p></li>
+      <li class="process-step" style="border:0"><p class="process-lbl">04 / PUBLICAÇÃO</p><h3>Você divulga</h3><p>Recebe uma presença digital pronta para atrair oportunidades.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- METHODOLOGY -->
+<section id="metodologia" class="section section-white reveal" aria-labelledby="meth-heading">
+  <div class="container">
+    <p class="eyebrow eyebrow-light">Metodologia de trabalho</p>
+    <div class="meth-header">
+      <h2 class="sec-heading" id="meth-heading">O projeto avança<br>com <em>clareza em cada etapa.</em></h2>
+      <p style="max-width:320px;font-size:14px;color:var(--ink-muted);line-height:1.7">Sem surpresas e sem etapas escondidas. Você acompanha a evolução da primeira conversa até a entrega final.</p>
+    </div>
+    <ol class="meth-grid" aria-label="Metodologia de trabalho">
+      <li class="meth-item"><div class="meth-num">01</div><h3>Briefing</h3><p>Entendemos negócio, objetivos e público.</p></li>
+      <li class="meth-item"><div class="meth-num">02</div><h3>Direção</h3><p>Definimos mensagem, estrutura e visual.</p></li>
+      <li class="meth-item"><div class="meth-num">03</div><h3>Desenvolvimento</h3><p>Transformamos a estratégia em experiência web.</p></li>
+      <li class="meth-item" style="border:0"><div class="meth-num">04</div><h3>Entrega</h3><p>Revisamos, testamos e deixamos tudo pronto.</p></li>
+    </ol>
+    <div class="sec-cta-bar">
+      <a href="https://wa.me/5562991558090" target="_blank" rel="noopener noreferrer" class="btn-primary" style="font-size:11px;padding:10px 16px">Começar meu projeto agora ↘</a>
+      <p style="font-size:12px;color:var(--ink-muted)">Sem compromisso — você decide depois de conversar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TECH -->
+<section id="tecnologias" class="section section-mint-faint reveal" aria-labelledby="tech-heading">
+  <div class="container">
+    <p class="eyebrow" style="color:var(--mint-dark);display:flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:18px">
+      <span style="width:6px;height:6px;border-radius:50%;background:var(--mint-dark);display:inline-block;flex-shrink:0"></span>Tecnologias e habilidades
+    </p>
+    <div class="tech-header">
+      <h2 class="sec-heading" id="tech-heading">Ferramentas que dão<br><em>vida à sua ideia.</em></h2>
+      <a href="https://wa.me/5562991558090" target="_blank" rel="noopener noreferrer" class="btn-outline" style="font-size:11px;padding:10px 16px">Falar do projeto ↗</a>
+    </div>
+    <ul class="tech-grid" aria-label="Tecnologias utilizadas">
+      <li><article class="tech-card"><div class="tech-icon" style="background:var(--navy)">&lt;/&gt;</div><div class="tech-name">HTML</div><div class="tech-role">Estrutura</div></article></li>
+      <li><article class="tech-card"><div class="tech-icon" style="background:var(--mint)">✦</div><div class="tech-name">CSS</div><div class="tech-role">Interface</div></article></li>
+      <li><article class="tech-card"><div class="tech-icon" style="background:var(--navy-mid)">JS</div><div class="tech-name">JavaScript</div><div class="tech-role">Interação</div></article></li>
+      <li><article class="tech-card"><div class="tech-icon" style="background:#3b2f8f">PHP</div><div class="tech-name">PHP</div><div class="tech-role">Integração</div></article></li>
+      <li><article class="tech-card"><div class="tech-icon" style="background:#0d7a60">Py</div><div class="tech-name">Python</div><div class="tech-role">Automação</div></article></li>
+    </ul>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" class="section section-white reveal" aria-labelledby="portfolio-heading">
+  <div class="container">
+    <p class="eyebrow eyebrow-light">Portfólio e possibilidades</p>
+    <h2 class="sec-heading" id="portfolio-heading">Apresente o seu negócio<br>de um jeito <em>impossível de ignorar.</em></h2>
+    <p style="font-size:14px;color:var(--ink-muted);margin-top:12px;max-width:500px;line-height:1.7">Os exemplos abaixo representam formatos de projeto. Substitua pelas capturas dos seus trabalhos publicados para fortalecer a prova social.</p>
+    <div class="filters" role="group" aria-label="Filtrar projetos">
+      <button class="filter-btn active" onclick="filterPortfolio('all',this)">Todos</button>
+      <button class="filter-btn" onclick="filterPortfolio('landing',this)">Landing Pages</button>
+      <button class="filter-btn" onclick="filterPortfolio('store',this)">Lojas Virtuais</button>
+      <button class="filter-btn" onclick="filterPortfolio('site',this)">Sites Corporativos</button>
+    </div>
+    <div class="port-grid" id="port-grid" aria-label="Projetos do portfólio" aria-live="polite">
+      <button class="port-card" data-cat="landing" data-title="Consultoria digital — MODELO / LANDING PAGE" onclick="openLightbox(this)" aria-label="Ampliar: Consultoria digital">
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1100&q=80" alt="Dashboard com gráficos de consultoria digital — landing page desenvolvida para consultoria de negócios" loading="lazy">
+        <div class="port-overlay"><div class="port-badge">MODELO / LANDING PAGE</div><div class="port-title">Consultoria digital</div><div class="port-stack">HTML · CSS · JavaScript · SEO</div></div>
+      </button>
+      <button class="port-card" data-cat="store" data-title="Marca de produtos — MODELO / LOJA VIRTUAL" onclick="openLightbox(this)" aria-label="Ampliar: Marca de produtos">
+        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1100&q=80" alt="Interface de loja virtual com produtos em destaque — e-commerce desenvolvido para marca de produtos" loading="lazy">
+        <div class="port-overlay"><div class="port-badge">MODELO / LOJA VIRTUAL</div><div class="port-title">Marca de produtos</div><div class="port-stack">HTML · CSS · JavaScript · PHP</div></div>
+      </button>
+      <button class="port-card" data-cat="site" data-title="Empresa de serviços — MODELO / SITE CORPORATIVO" onclick="openLightbox(this)" aria-label="Ampliar: Empresa de serviços">
+        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1100&q=80" alt="Site corporativo moderno com layout profissional — desenvolvido para empresa de serviços B2B" loading="lazy">
+        <div class="port-overlay"><div class="port-badge">MODELO / SITE CORPORATIVO</div><div class="port-title">Empresa de serviços</div><div class="port-stack">HTML · CSS · PHP · SEO</div></div>
+      </button>
+      <button class="port-card" data-cat="landing" data-title="Especialista autônomo — MODELO / LANDING PAGE" onclick="openLightbox(this)" aria-label="Ampliar: Especialista autônomo">
+        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1100&q=80" alt="Landing page para especialista autônomo com foco em conversão e clareza da proposta de valor" loading="lazy">
+        <div class="port-overlay"><div class="port-badge">MODELO / LANDING PAGE</div><div class="port-title">Especialista autônomo</div><div class="port-stack">HTML · CSS · JavaScript</div></div>
+      </button>
+    </div>
+    <div class="sec-cta-bar">
+      <p style="font-size:13px;color:var(--ink-muted)">Quer um projeto como esses?</p>
+      <a href="https://wa.me/5562991558090" target="_blank" rel="noopener noreferrer" class="btn-primary" style="font-size:11px;padding:10px 16px">Vamos conversar ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Visualizador de projeto" onclick="closeLightbox()">
+  <button id="lightbox-close" onclick="closeLightbox()" aria-label="Fechar visualização">×</button>
+  <img id="lightbox-img" src="" alt="">
+  <p id="lightbox-caption"></p>
+</div>
+
+<!-- TESTIMONIALS -->
+<section class="section section-navy" aria-label="Depoimentos de clientes">
+  <div class="container">
+    <p class="eyebrow eyebrow-dark">Depoimentos</p>
+    <div role="region" aria-roledescription="carrossel" aria-label="Depoimentos">
+      <blockquote class="testi-quote" id="testi-quote">"Contratar o Rogério para criar o novo site da nossa empresa foi a melhor decisão. O projeto foi entregue no prazo, o design ficou moderno e nossos clientes adoraram a facilidade de navegação. Recomendo muito o trabalho!"</blockquote>
+      <div class="testi-author">
+        <div class="testi-avatar" id="testi-av" style="background:var(--mint)" aria-hidden="true">CF</div>
+        <cite style="font-style:normal">
+          <div class="testi-name" id="testi-name">Cinthiany Fernandes</div>
+          <div class="testi-role" id="testi-role">Gerente — Studio de Beleza Cinthiany Fernandes</div>
+        </cite>
+      </div>
+    </div>
+    <div class="carousel-controls">
+      <button class="carousel-btn" id="prev" aria-label="Depoimento anterior">←</button>
+      <span class="carousel-idx" id="cidx" aria-live="polite" aria-atomic="true">01 / 03</span>
+      <button class="carousel-btn" id="next" aria-label="Próximo depoimento">→</button>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section section-paper reveal" aria-labelledby="faq-heading">
+  <div class="container">
+    <div class="faq-grid">
+      <div>
+        <p class="eyebrow eyebrow-light">Dúvidas frequentes</p>
+        <h2 class="sec-heading" id="faq-heading">Sem letras miúdas.<br><em>Só o essencial.</em></h2>
+        <p style="font-size:14px;color:var(--ink-muted);margin-top:20px;margin-bottom:28px;max-width:270px;line-height:1.7">Não encontrou sua dúvida? Manda uma mensagem e respondo em até 24h.</p>
+        <a href="https://wa.me/5562991558090" target="_blank" rel="noopener noreferrer" class="btn-primary" style="font-size:11px;padding:10px 16px">Fazer uma pergunta ↗</a>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item" open><summary>Quanto custa uma landing page?</summary><p>O investimento inicial é de R$ 500. O valor final depende do conteúdo, recursos e nível de personalização do projeto.</p></details>
+        <details class="faq-item"><summary>Preciso ter textos e fotos prontos?</summary><p>Não. Você chega com o que tem; nós ajudamos a organizar a mensagem e indicar o que será necessário para uma boa apresentação.</p></details>
+        <details class="faq-item"><summary>Vai funcionar bem no celular?</summary><p>Sim. Cada página é desenvolvida para telas pequenas e grandes, porque boa parte dos seus visitantes chegará pelo celular.</p></details>
+        <details class="faq-item"><summary>Qual o prazo de entrega?</summary><p>Em média 7 dias úteis para uma landing page. Sites corporativos e lojas virtuais têm prazos específicos definidos no briefing.</p></details>
+        <details class="faq-item"><summary>Como funciona o pagamento?</summary><p>50% no início do projeto e 50% na entrega. Aceito Pix, transferência bancária e cartão de crédito.</p></details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contato" aria-labelledby="contact-heading">
+  <div class="container">
+    <p class="eyebrow eyebrow-dark">Agenda aberta para novos projetos</p>
+    <h2 class="sec-heading sec-heading-white" id="contact-heading">Descubra o melhor caminho<br>para divulgar <em>seu negócio.</em></h2>
+    <p style="max-width:440px;font-size:15px;line-height:1.7;color:rgba(255,255,255,.58);margin-top:20px">Preencha o briefing rápido. Em menos de um minuto, você envia as informações essenciais pelo WhatsApp e recebe uma direção inicial sem compromisso.</p>
+    <form class="contact-form" onsubmit="sendWA(event)" aria-label="Formulário de briefing rápido">
+      <label class="form-label">Seu nome<input name="nome" required placeholder="Como podemos chamar você?"></label>
+      <div class="form-row">
+        <label class="form-label">Tipo de projeto<select name="projeto" required><option value="">Selecione uma opção</option><option>Landing page</option><option>Site corporativo</option><option>Loja virtual</option><option>Outro projeto web</option></select></label>
+        <label class="form-label">Prazo desejado<select name="prazo" required><option value="">Selecione uma opção</option><option>O quanto antes</option><option>Nas próximas 2 semanas</option><option>Nos próximos 30 dias</option><option>Ainda estou planejando</option></select></label>
+      </div>
+      <label class="form-label">Orçamento estimado<select name="orcamento" required><option value="">Selecione uma faixa</option><option>A partir de R$ 500</option><option>Entre R$ 1.000 e R$ 2.500</option><option>Acima de R$ 2.500</option><option>Ainda não sei</option></select></label>
+      <div><button type="submit" class="btn-primary">Enviar briefing pelo WhatsApp <span style="opacity:.7">↗</span></button></div>
+    </form>
+    <p class="form-note">Você revisa a mensagem antes de enviar. Nenhum dado é armazenado nesta página.</p>
+    <footer class="site-footer">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px">
+        <span>© 2025 rogeriogomide.dev</span>
+        <span>PERNAMBUCO, BRASIL · INVESTIMENTO INICIAL: R$ 500</span>
+      </div>
+      <nav aria-label="Redes sociais" class="social-links">
+
+        <!-- WhatsApp -->
+        <a href="https://wa.me/5562991558090" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp">
+          <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          WhatsApp
+        </a>
+
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/rogeriogomide.dev" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+          <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+          </svg>
+          Instagram
+        </a>
+
+        <!-- GitHub -->
+        <a href="https://github.com/RogerioGomide894" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+          <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+          </svg>
+          GitHub
+        </a>
+
+        <!-- LinkedIn -->
+        <a href="https://linkedin.com/in/rogerio-gomide-45a626346" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+          <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+          LinkedIn
+        </a>
+
+      </nav>
+    </footer>
+  </div>
+</section>
+
+</main>
+
+<!-- Floating -->
+<a href="https://wa.me/5562991558090" class="wa-btn" target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp">
+  <span aria-hidden="true">●</span> <span>WhatsApp</span>
+</a>
+<a href="#inicio" class="back-top" id="back-top" aria-label="Voltar ao topo">↑</a>
+
+<script>
+const WA = 'https://wa.me/5562991558090';
+
+/* SCROLL */
+const header = document.getElementById('site-header');
+const progress = document.getElementById('progress-bar');
+const backTop = document.getElementById('back-top');
+const navLinks = document.querySelectorAll('.nav-link[data-section]');
+window.addEventListener('scroll', () => {
+  const s = window.scrollY, t = document.body.scrollHeight - window.innerHeight;
+  header.classList.toggle('scrolled', s > 10);
+  progress.style.width = t > 0 ? (s/t*100)+'%' : '0';
+  backTop.classList.toggle('show', s > 300);
+  navLinks.forEach(l => { const el = document.getElementById(l.dataset.section); l.classList.toggle('active', el && el.getBoundingClientRect().top <= 110); });
+}, { passive:true });
+
+/* HAMBURGER */
+const hb = document.getElementById('hamburger'), mn = document.getElementById('mobile-menu');
+hb.addEventListener('click', () => { const o = mn.classList.toggle('open'); hb.textContent = o ? '✕' : '☰'; hb.setAttribute('aria-expanded', String(o)); });
+mn.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { mn.classList.remove('open'); hb.textContent='☰'; hb.setAttribute('aria-expanded','false'); }));
+
+/* REVEAL */
+const obs = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);} }), {threshold:0.07});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+/* TESTIMONIALS */
+const T=[
+  {q:'"Contratar o Rogério para criar o novo site da nossa empresa foi a melhor decisão. O projeto foi entregue no prazo, o design ficou moderno e nossos clientes adoraram!"',n:'Cinthiany Fernandes',r:'Gerente — Studio de Beleza Cinthiany Fernandes',av:'CF',bg:'#10b981'},
+  {q:'"Profissionalismo, atenção aos detalhes e uma comunicação muito fácil durante todo o projeto. Entregou exatamente o que precisávamos."',n:'Marcos Oliveira',r:'Sócio — Consultoria MO',av:'MO',bg:'#0b1e4a'},
+  {q:'"A nova página deixou nossa apresentação muito mais clara e profissional. Em duas semanas já sentimos diferença no número de contatos."',n:'Ana Paula Ramos',r:'Proprietária — Clínica Ramos',av:'AR',bg:'#3b2f8f'}
+];
+let ci=0;
+function upd(){const t=T[ci];document.getElementById('testi-quote').textContent=t.q;document.getElementById('testi-name').textContent=t.n;document.getElementById('testi-role').textContent=t.r;const av=document.getElementById('testi-av');av.textContent=t.av;av.style.background=t.bg;document.getElementById('cidx').textContent=String(ci+1).padStart(2,'0')+' / 0'+T.length;}
+document.getElementById('next').onclick=()=>{ci=(ci+1)%T.length;upd();};
+document.getElementById('prev').onclick=()=>{ci=(ci-1+T.length)%T.length;upd();};
+
+/* PORTFOLIO */
+function filterPortfolio(cat,btn){document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.port-card').forEach(c=>{c.style.display=(cat==='all'||c.dataset.cat===cat)?'':'none';});}
+
+/* LIGHTBOX */
+function openLightbox(card){const img=card.querySelector('img');document.getElementById('lightbox-img').src=img.src;document.getElementById('lightbox-img').alt=img.alt;document.getElementById('lightbox-caption').textContent=card.dataset.title;document.getElementById('lightbox').classList.add('open');document.body.style.overflow='hidden';}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+
+/* FORM */
+function sendWA(e){e.preventDefault();const f=e.target;const msg=encodeURIComponent('Olá! Me chamo '+f.nome.value+'.\nProjeto: '+f.projeto.value+'\nPrazo: '+f.prazo.value+'\nOrçamento: '+f.orcamento.value);window.open(WA+'?text='+msg,'_blank','noopener');}
+
+/* ── HERO CANVAS ANIMATION — Developer coding scene ── */
+(function(){
+  const canvas = document.getElementById('hero-canvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  // Colors
+  const C = {
+    bg:      '#0b1e4a',
+    bgDark:  '#07142e',
+    panel:   'rgba(255,255,255,0.04)',
+    panelBorder: 'rgba(255,255,255,0.08)',
+    mint:    '#10b981',
+    mintDim: 'rgba(16,185,129,0.25)',
+    blue:    '#3b82f6',
+    purple:  '#8b5cf6',
+    yellow:  '#fbbf24',
+    red:     '#f87171',
+    white:   'rgba(255,255,255,0.7)',
+    dim:     'rgba(255,255,255,0.15)',
+    cursor:  'rgba(16,185,129,0.9)',
+  };
+
+  let W, H, t = 0, raf;
+
+  function resize(){
+    W = canvas.width  = canvas.offsetWidth  || window.innerWidth;
+    H = canvas.height = canvas.offsetHeight || window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  // ── Code lines data ──────────────────────────────────────────────────────
+  const CODE_LINES = [
+    { tokens:[{c:C.purple,t:'const '},{c:C.blue,t:'hero '},{c:C.white,t:'= () => {'},{c:C.dim,t:''}] },
+    { tokens:[{c:C.dim,t:'  '},{c:C.red,t:'return '},{c:C.white,t:'('},{c:C.dim,t:''}] },
+    { tokens:[{c:C.dim,t:'    '},{c:C.mint,t:'<section '},{c:C.yellow,t:'className'},{c:C.white,t:'='},{c:C.red,t:'"hero"'},{c:C.mint,t:'>'},{c:C.dim,t:''}] },
+    { tokens:[{c:C.dim,t:'      '},{c:C.mint,t:'<h1'},{c:C.white,t:'>'},{c:C.white,t:'Olá, mundo'},{c:C.mint,t:'</h1>'},{c:C.dim,t:''}] },
+    { tokens:[{c:C.dim,t:'      '},{c:C.mint,t:'<Button '},{c:C.yellow,t:'href'},{c:C.white,t:'='},{c:C.red,t:'"#contato"'},{c:C.mint,t:'/>'},{c:C.dim,t:''}] },
+    { tokens:[{c:C.dim,t:'    '},{c:C.mint,t:'</section>'},{c:C.dim,t:''}] },
+    { tokens:[{c:C.dim,t:'  )'},{c:C.dim,t:''}] },
+    { tokens:[{c:C.white,t:'}'},{c:C.dim,t:''}] },
+    { tokens:[{c:C.dim,t:''}] },
+    { tokens:[{c:C.purple,t:'export '},{c:C.blue,t:'default '},{c:C.white,t:'hero;'},{c:C.dim,t:''}] },
+  ];
+
+  // ── Floating particles ────────────────────────────────────────────────────
+  const PARTICLES = Array.from({length:32}, () => ({
+    x: Math.random(),
+    y: Math.random(),
+    r: Math.random() * 1.5 + 0.3,
+    vx: (Math.random() - 0.5) * 0.00018,
+    vy: (Math.random() - 0.5) * 0.00010,
+    a: Math.random() * 0.18 + 0.04,
+    color: Math.random() > 0.5 ? C.mint : C.blue,
+  }));
+
+  // ── Browser mockup data ───────────────────────────────────────────────────
+  let typeProgress = 0; // 0..1 — how much of the "site" is built
+
+  // ── Draw functions ────────────────────────────────────────────────────────
+  function roundRect(x,y,w,h,r){
+    ctx.beginPath();
+    ctx.moveTo(x+r,y);
+    ctx.lineTo(x+w-r,y); ctx.arcTo(x+w,y,x+w,y+r,r);
+    ctx.lineTo(x+w,y+h-r); ctx.arcTo(x+w,y+h,x+w-r,y+h,r);
+    ctx.lineTo(x+r,y+h); ctx.arcTo(x,y+h,x,y+h-r,r);
+    ctx.lineTo(x,y+r); ctx.arcTo(x,y,x+r,y,r);
+    ctx.closePath();
+  }
+
+  function drawEditor(x,y,w,h){
+    // Editor window
+    ctx.save();
+    roundRect(x,y,w,h,8);
+    ctx.fillStyle = 'rgba(10,16,35,0.90)';
+    ctx.fill();
+    ctx.strokeStyle = C.panelBorder;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    // Title bar
+    roundRect(x,y,w,28,8);
+    ctx.fillStyle = 'rgba(255,255,255,0.05)';
+    ctx.fill();
+    // Window dots
+    const dots = ['#f87171','#fbbf24','#4ade80'];
+    dots.forEach((col,i)=>{
+      ctx.beginPath();
+      ctx.arc(x+12+i*14,y+14,4,0,Math.PI*2);
+      ctx.fillStyle = col;
+      ctx.fill();
+    });
+    // Tab label
+    ctx.fillStyle = C.dim;
+    ctx.font = '10px "DM Mono",monospace';
+    ctx.fillText('HeroSection.tsx',x+52,y+18);
+
+    // Line numbers + code
+    const lineH = 18, pad = 14, codeX = x+36;
+    const visibleLines = Math.min(CODE_LINES.length, Math.floor((h-40)/lineH));
+    const revealedLines = Math.min(visibleLines, Math.floor(typeProgress * (CODE_LINES.length+1)));
+
+    for(let i=0;i<visibleLines;i++){
+      const ly = y+40+i*lineH;
+      // Line number
+      ctx.fillStyle = 'rgba(255,255,255,0.2)';
+      ctx.font = '10px "DM Mono",monospace';
+      ctx.textAlign = 'right';
+      ctx.fillText(String(i+1),x+28,ly);
+      ctx.textAlign = 'left';
+
+      if(i >= revealedLines) continue;
+
+      const line = CODE_LINES[i % CODE_LINES.length];
+      let tx = codeX;
+      const isCurrentLine = i === revealedLines - 1;
+      let charsToShow = isCurrentLine
+        ? Math.floor((typeProgress * (CODE_LINES.length+1) - i) * 30)
+        : 999;
+
+      for(const tok of line.tokens){
+        ctx.fillStyle = tok.c;
+        ctx.font = '11px "DM Mono",monospace';
+        const text = tok.t.slice(0, charsToShow);
+        ctx.fillText(text, tx, ly);
+        tx += ctx.measureText(tok.t).width;
+        charsToShow -= tok.t.length;
+        if(charsToShow <= 0) break;
+      }
+
+      // Cursor on current line
+      if(isCurrentLine){
+        const cursorOn = Math.floor(t*2) % 2 === 0;
+        if(cursorOn){
+          ctx.fillStyle = C.cursor;
+          ctx.fillRect(tx, ly-12, 2, 14);
+        }
+      }
+    }
+    ctx.restore();
+  }
+
+  function drawBrowser(x,y,w,h){
+    ctx.save();
+    roundRect(x,y,w,h,8);
+    ctx.fillStyle = 'rgba(229,227,251,0.92)';
+    ctx.fill();
+    ctx.strokeStyle = C.panelBorder;
+    ctx.lineWidth=1; ctx.stroke();
+
+    // Chrome bar
+    roundRect(x,y,w,24,8);
+    ctx.fillStyle='rgba(200,196,255,0.5)'; ctx.fill();
+    const dots=['#f87171','#fbbf24','#4ade80'];
+    dots.forEach((col,i)=>{
+      ctx.beginPath(); ctx.arc(x+8+i*11,y+12,3,0,Math.PI*2);
+      ctx.fillStyle=col; ctx.fill();
+    });
+    ctx.fillStyle='rgba(80,60,200,0.6)';
+    ctx.font='8px "DM Mono",monospace';
+    ctx.fillText('rogeriogomide.dev',x+40,y+16);
+
+    // Site preview — builds up with typeProgress
+    const tp = typeProgress;
+    const cx=x+10, cy=y+30, cw=w-20;
+
+    // Nav
+    if(tp>0.05){
+      ctx.fillStyle='rgba(11,30,74,'+Math.min(1,(tp-0.05)*10)+')';
+      ctx.font='bold 10px "Plus Jakarta Sans",sans-serif';
+      ctx.fillText('RG',cx,cy+14);
+      ctx.fillStyle='rgba(11,30,74,0.5)';
+      ctx.font='7px "DM Mono",monospace';
+      ['Serviços','Portfólio','Contato'].forEach((l,i)=>{
+        if(tp>0.1+i*0.05) ctx.fillText(l,cx+60+i*42,cy+14);
+      });
+    }
+
+    // Hero heading
+    if(tp>0.2){
+      const a=Math.min(1,(tp-0.2)*8);
+      ctx.fillStyle=`rgba(10,18,60,${a})`;
+      ctx.font=`bold ${Math.floor(12+tp*4)}px "Plus Jakarta Sans",sans-serif`;
+      ctx.fillText('Transformo',cx,cy+38);
+      ctx.fillStyle=`rgba(11,30,74,${a})`;
+      ctx.fillText('visitantes',cx,cy+54);
+      ctx.fillStyle=`rgba(16,185,129,${a})`;
+      ctx.fillText('em clientes.',cx,cy+70);
+    }
+
+    // Button
+    if(tp>0.5){
+      const a=Math.min(1,(tp-0.5)*6);
+      roundRect(cx,cy+78,80,18,4);
+      ctx.fillStyle=`rgba(16,185,129,${a})`;
+      ctx.fill();
+      ctx.fillStyle=`rgba(255,255,255,${a})`;
+      ctx.font='7px "Plus Jakarta Sans",sans-serif';
+      ctx.fillText('Falar do projeto →',cx+5,cy+90);
+    }
+
+    // Cards row
+    if(tp>0.7){
+      const a=Math.min(1,(tp-0.7)*8);
+      for(let i=0;i<3;i++){
+        const cx2=cx+i*(cw/3+2);
+        roundRect(cx2,cy+104,cw/3-4,28,4);
+        ctx.fillStyle=`rgba(255,255,255,${a*0.8})`;
+        ctx.fill();
+        ctx.strokeStyle=`rgba(11,30,74,${a*0.1})`;
+        ctx.lineWidth=0.5; ctx.stroke();
+        ctx.fillStyle=`rgba(11,30,74,${a*0.7})`;
+        ctx.font=`6px "Plus Jakarta Sans",sans-serif`;
+        ctx.fillText(['Landing','E-commerce','Corporativo'][i],cx2+4,cy+118);
+      }
+    }
+
+    ctx.restore();
+  }
+
+  function drawParticles(){
+    PARTICLES.forEach(p=>{
+      p.x += p.vx; p.y += p.vy;
+      if(p.x<0) p.x=1; if(p.x>1) p.x=0;
+      if(p.y<0) p.y=1; if(p.y>1) p.y=0;
+      ctx.beginPath();
+      ctx.arc(p.x*W, p.y*H, p.r, 0, Math.PI*2);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = p.a;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    });
+  }
+
+  function drawGrid(){
+    ctx.save();
+    ctx.strokeStyle='rgba(255,255,255,0.025)';
+    ctx.lineWidth=0.5;
+    const step=60;
+    for(let x=0;x<W;x+=step){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+    for(let y=0;y<H;y+=step){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+    ctx.restore();
+  }
+
+  function frame(){
+    t += 0.016;
+    // typeProgress cycles: 0→1 over 8s, holds 2s, resets
+    const cycle = 10;
+    typeProgress = Math.min(1, (t % cycle) / 8);
+
+    // Background
+    ctx.fillStyle = C.bg;
+    ctx.fillRect(0,0,W,H);
+
+    // Subtle grid
+    drawGrid();
+
+    // Floating particles
+    drawParticles();
+
+    // Layout: editor left, browser right (responsive)
+    const margin = Math.min(W*0.05, 40);
+    const gap    = 16;
+
+    if(W >= 900){
+      // Side by side
+      const edW = (W - margin*2 - gap) * 0.52;
+      const brW = (W - margin*2 - gap) * 0.44;
+      const panH = Math.min(H * 0.62, 360);
+      const panY = (H - panH) / 2;
+      drawEditor(margin, panY, edW, panH);
+      drawBrowser(margin + edW + gap, panY, brW, panH);
+    } else {
+      // Stacked — editor only (browser hidden on small)
+      const panW = W - margin*2;
+      const panH = Math.min(H * 0.55, 300);
+      const panY = (H - panH) / 2;
+      drawEditor(margin, panY, panW, panH);
+    }
+
+    raf = requestAnimationFrame(frame);
+  }
+
+  frame();
+
+  // Pause when tab hidden
+  document.addEventListener('visibilitychange', ()=>{
+    if(document.hidden){ cancelAnimationFrame(raf); }
+    else { t = 0; frame(); }
+  });
+})();
+
+</script>
+</body>
+</html>
